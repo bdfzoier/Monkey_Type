@@ -40,6 +40,6 @@ int main(){
 	string af[100];
 	cin>>s;
 	int to=sep(s,af);
-	for(int i=0;i<to;i++)cout<<af[i];
+	for(int i=0;i<to;i++)cout<<af[i]<<" ";
 	return 0;
 }
