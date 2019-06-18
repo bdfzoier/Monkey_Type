@@ -98,6 +98,14 @@ struct Splay {
 			return Query_(p->r, s);
 		}
 	}
+	void Destruct(Node *&p) {
+		if (p == NULL) {
+			return;
+		}
+		Destruct(p->l);
+		Destruct(p->r);
+		delete p;
+	}
 	public:
 	Splay() {
 		New(_root, "!");
@@ -109,6 +117,9 @@ struct Splay {
 	}
 	int Query(string s) {
 		return Query_(_root, s);
+	}
+	~Splay() {
+		Destruct(_root);
 	}
 };
 
