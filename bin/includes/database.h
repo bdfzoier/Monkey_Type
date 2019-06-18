@@ -1,3 +1,5 @@
+//用new定义数组
+//能更大
 #include<iostream>
 #include<cstring>
 #include<cstdio>
@@ -5,20 +7,32 @@
 #include<map>
 using namespace std;
 const int NR=1000;
-const int MXN=100;
+const int SON=100;
 struct word_chain{
 	map<string,int> indexof;
 	string stringof[NR];
 	int last_part_index/*最后一个组的编号*/;
-	int son[NR][MXN],son_t[NR];
+	int** son;
+	int *son_t;
 	//int not_son[NR][NR],not_son_t[NR];
 	//记录该声韵母组后面可以或者不可以接什么
 	word_chain(){
+		son=new int*[NR];
+		for(int i=0;i<NR;i++)
+			son[i]=new int[SON];
+		son_t=new int[NR];
 		last_part_index=0;
-		memset(son,-1,sizeof(son));
-		memset(son_t,0,sizeof(son_t));
+		for(int i=0;i<NR;i++)
+			memset(son[i],-1,SON*sizeof(int));
+		memset(son_t,0,NR*sizeof(int));
 		//memset(not_son,-1,sizeof(not_son));
 		//memset(not_son_t,0,sizeof(not_son_t));
+	}
+	void freespace(){
+		for(int i=0;i<NR;i++)
+			delete[] son[i];
+		delete[] son;
+		delete[] son_t;
 	}
 	//-----------------------------function using map start--------------------------------------
 	inline int newstr(string str){
