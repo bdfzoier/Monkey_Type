@@ -25,6 +25,7 @@ struct word_chain{
 		for(int i=0;i<NR;i++)
 			memset(son[i],-1,SON*sizeof(int));
 		memset(son_t,0,NR*sizeof(int));
+		printf("Variable initialization completed.\n");
 		//memset(not_son,-1,sizeof(not_son));
 		//memset(not_son_t,0,sizeof(not_son_t));
 	}
@@ -61,7 +62,7 @@ struct word_chain{
 		}
 	}
 	//-----------------------------function using map end--------------------------------------
-	//第一个参数:统计并清楚编号为strnum的节点的子节点
+	//第一个参数:统计并清除法编号为strnum的节点的子节点
 	//第二个参数:清除出现次数少于k的
 	void clean(int strnum,int k){
 		sort(son[strnum]+1,son[strnum]+son_t[strnum]+1);
