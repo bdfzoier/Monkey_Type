@@ -35,15 +35,15 @@ struct word_chain{
 	}
 	inline void print(){
 		for(int i=1;i<=last_part_index;i++){
-			printf("i=%d,string=",i);
-			cout<<stringof[i];
+			printf("num:%d\tstring:",i);
+			cout<<stringof[i]<<"\tsons:[";
 			for(int j=1;j<=son_t[i];j++){
 				printf(" %d",son[i][j]);
 				if(son[i][j]>0)
-					cout<<stringof[son[i][j]]<<", ";
-				else cout<<"**<0**, ";
+					cout<<stringof[son[i][j]];
+				else printf("**<0**");
 			}
-			printf("\n");
+			printf(" ]\n");
 		}
 	}
 	//-----------------------------function using map end--------------------------------------
@@ -73,17 +73,3 @@ struct word_chain{
 		son_t[strnum]=index_of_done-1;
 	}
 };
-int main(){
-	word_chain fk;
-	string s="haha";
-	string s2="fuck";
-	string s3="kiafuha";
-	fk.push_next(s,s2);
-	fk.push_next(s,s2);
-	fk.push_next(s,s3);
-	fk.print();
-	puts("-----------------------------------------------------");
-	fk.clean(1,2);
-	fk.print();
-	return 0;
-}
