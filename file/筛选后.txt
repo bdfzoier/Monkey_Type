@@ -124,7 +124,6 @@ altitude
 altogether
 aluminium
 always
-a.m
 amaze
 ambition
 ambulance
@@ -310,7 +309,6 @@ bathe
 bathroom
 battery
 battle
-B.C.
 beach
 beam
 bean
@@ -1377,7 +1375,6 @@ fasten
 fatal
 fate
 father
-father-in-law
 fatigue
 fault
 faulty
@@ -1808,14 +1805,12 @@ hurt
 husband
 hydrogen
 ice
-ice-cream
 idea
 ideal
 identical
 identify
 idiom
 idle
-i.e.
 ignorant
 ignore
 illegal
@@ -2145,7 +2140,6 @@ live
 lively
 liver
 living
-living-room
 load
 loaf
 loan
@@ -2509,7 +2503,6 @@ occur
 occurrence
 ocean
 Oceania
-o'clock
 October
 odour
 off
@@ -2757,7 +2750,6 @@ plug
 plunge
 plural
 plus
-P.M.
 pocket
 poem
 poet
@@ -3504,7 +3496,6 @@ snowy
 soak
 soap
 sober
-so-called
 soccer
 social
 socialism
@@ -3801,7 +3792,7 @@ sympathize
 sympathy
 synthetic
 system
-systematic(al)
+systematic
 table
 tablet
 tail
@@ -3961,7 +3952,7 @@ touch
 tough
 tour
 tourist
-toward(s)
+toward
 towel
 tower
 town
@@ -4111,9 +4102,7 @@ upon
 upper
 upright
 upset
-upside-down
 upstairs
-up-to-date
 upward
 upwards
 urge
@@ -4253,7 +4242,6 @@ weld
 welfare
 well
 well
-well-known
 west
 western
 westward
@@ -4326,7 +4314,6 @@ worker
 workman
 workshop
 world
-world-wide
 worm
 worry
 worse
@@ -4346,7 +4333,6 @@ write
 writer
 writing
 wrong
-X-ray
 yard
 yard
 yawn
@@ -4367,7 +4353,6 @@ zealous
 zebra
 zero
 zone
-X-ray
 yard
 yard
 yawn
