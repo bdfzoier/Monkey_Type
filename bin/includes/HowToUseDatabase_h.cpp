@@ -1,13 +1,18 @@
 #include "database2.h"
 int main(){
-	freopen("test.in","r",stdin);
+	freopen("test.txt","r",stdin);
 	word_chain fk;
-	fk.input();
-	fk.input();
+	int n;
+	cin>>n;
+	while(n--){
+		fk.input();
+	}
+	freopen("out.txt","w",stdout);
 	fk.print();
-	puts("-----------------------------------------------------");
-	//fk.clean(2,2);
-	//fk.print();
-	//fk.freespace();//解除空间占用
+	puts("-------------");
+	for(int i=2;i<=fk.last_part_index;i++)
+		fk.clean(i,5);
+	fk.print();
+	fk.freespace();
 	return 0;
 }

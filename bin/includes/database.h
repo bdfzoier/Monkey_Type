@@ -9,15 +9,133 @@
 #include<algorithm>
 #include<map>
 
-#define NR 1000
-#define SON 100
+#define NR 100000
+#define SON 5000
 
 using namespace std;
+struct Node {
+	int siz, k;
+	std::string val;
+	Node *l, *r;
+	Node() {
+		k = siz = 0;
+		val = "";
+		l = r = NULL;
+	}
+	void Update() {
+		siz = (l == NULL ? 0 : l->siz) + (r == NULL ? 0 : r->siz) + 1;
+	}
+};
+struct Splay {
+	private:
+	Node *_root;
+	void New(Node *&p, std::string val) {
+		p = new Node;
+		p->val = val;
+		p->siz = 1;
+	}
+	void RotateL(Node *&p) {
+		Node *q = p->r;
+		p->r = q->l;
+		q->l = p;
+		p->Update();
+		p = q;
+		p->Update();
+	}
+	void RotateR(Node *&p) {
+		Node *q = p->l;
+		p->l = q->r;
+		q->r = p;
+		p->Update();
+		p = q;
+		p->Update();
+	}
+	void Splay_(Node *&p, std::string val) {
+		if (p->val == val) {
+			return;
+		}
+		if (p->val > val) {
+			if (p->l->val == val) {
+				RotateR(p);
+			} else if (p->l->val > val) {
+				Splay_(p->l->l, val);
+				RotateR(p);
+				RotateR(p);
+			} else {
+				Splay_(p->l->r, val);
+				RotateL(p->l);
+				RotateR(p);
+			}
+		} else {
+			if (p->r->val == val) {
+				RotateL(p);
+			} else if (p->r->val < val) {
+				Splay_(p->r->r, val);
+				RotateL(p);
+				RotateL(p);
+			} else {
+				Splay_(p->r->l, val);
+				RotateR(p->r);
+				RotateL(p);
+			}
+		}
+	}
+	void Update_(Node *&p, std::string s, int k) {
+		if (p == NULL) {
+			New(p, s);
+			p->k = k;
+			return;
+		}
+		if (p->val == s) {
+			p->k = k;
+		} else if (p->val > s) {
+			Update_(p->l, s, k);
+		} else {
+			Update_(p->r, s, k);
+		}
+		p->Update();
+	}
+	int Query_(Node *p, std::string s) {
+		if (p == NULL) {
+			return 0;
+		}
+		if (p->val == s) {
+			return p->k;
+		} else if (p->val > s) {
+			return Query_(p->l, s);
+		} else {
+			return Query_(p->r, s);
+		}
+	}
+	void Destruct(Node *&p) {
+		if (p == NULL) {
+			return;
+		}
+		Destruct(p->l);
+		Destruct(p->r);
+		delete p;
+	}
+	public:
+	Splay() {
+		New(_root, "!");
+		New(_root->r, "~");
+	}
+	void Update(std::string s, int k) {
+		Update_(_root, s, k);
+		Splay_(_root, s);
+	}
+	int Query(std::string s) {
+		return Query_(_root, s);
+	}
+	~Splay() {
+		Destruct(_root);
+	}
+};
 inline bool is_vowel(char x){
 	return (x=='a')||(x=='e')||(x=='i')||(x=='o')||(x=='u');
 }
 struct word_chain{
-	map<string,int> indexof;
+	Splay indexof;
 	string stringof[NR],cur,last,read;
 	int last_part_index/*最后一个组的编号*/;
 	int** son;
@@ -45,15 +163,23 @@ struct word_chain{
 	}
 	//-----------------------------function using map start--------------------------------------
 	inline int newstr(string str){
-		int hasid=indexof[str];
+		int hasid=indexof.Query(str);
 		if(hasid)return hasid;
-		indexof[str]=++last_part_index;
+		if(last_part_index==NR-1){
+			printf("arr exceeded(NR needs to be bigger)\n");
+			return 0;
+		}
+		indexof.Update(str, ++last_part_index);
 		stringof[last_part_index]=str;
 		return last_part_index; 
 	}
 	inline void push_next(string cur,string next){
 		int id_cur=newstr(cur);
 		int id_next=newstr(next);
+		if(son_t[id_cur]==SON-1){
+			printf("arr exceeded(SON needs to be bigger)\n");
+			return;
+		}
 		son[id_cur][++son_t[id_cur]]=id_next;
 	}
 	inline void print(){
@@ -106,7 +232,7 @@ struct word_chain{
 				son[strnum][i]=-1;
 			}
 			else {
-				if(cnt<(k-1))
+				if(cnt<(k-1) && stringof[son[strnum][i]]!="end")
 					son[strnum][i]=-1;
 				cnt=0;
 			}
@@ -115,8 +241,8 @@ struct word_chain{
 		for(int i=1;i<=son_t[strnum];i++){
 			if(son[strnum][i]==-1)continue;
 			if(i!=index_of_done){
-				son[strnum][i]=-1;
 				son[strnum][index_of_done]=son[strnum][i];
+				son[strnum][i]=-1;
 			}
 			index_of_done++;
 		}
