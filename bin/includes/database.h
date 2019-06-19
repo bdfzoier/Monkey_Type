@@ -1,13 +1,18 @@
 //用new定义数组
 //能更大
+#ifndef DATABASE_H
+#define DATABASE_H 1
+
 #include<iostream>
 #include<cstring>
 #include<cstdio>
 #include<algorithm>
 #include<map>
+
+#define NR 1000
+#define SON 100
+
 using namespace std;
-const int NR=1000;
-const int SON=100;
 inline bool is_vowel(char x){
 	return (x=='a')||(x=='e')||(x=='i')||(x=='o')||(x=='u');
 }
@@ -118,3 +123,7 @@ struct word_chain{
 		son_t[strnum]=index_of_done-1;
 	}
 };
+#undef NR
+#undef SON
+
+#endif

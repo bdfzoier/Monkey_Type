@@ -1,16 +1,13 @@
-#include "database.h"
+#include "database2.h"
 int main(){
+	freopen("test.in","r",stdin);
 	word_chain fk;
-	string s="haha";
-	string s2="hello";
-	string s3="ltt";
-	fk.push_next(s,s2);
-	fk.push_next(s,s2);
-	fk.push_next(s,s3);
+	fk.input();
+	fk.input();
 	fk.print();
 	puts("-----------------------------------------------------");
-	fk.clean(1,2);
-	fk.print();
-	fk.freespace();//解除空间占用
+	//fk.clean(2,2);
+	//fk.print();
+	//fk.freespace();//解除空间占用
 	return 0;
 }
