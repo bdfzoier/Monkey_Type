@@ -1,4 +1,4 @@
-#include "database2.h"
+#include "database.h"
 int main(){
 	freopen("test.txt","r",stdin);
 	word_chain fk;
@@ -8,11 +8,10 @@ int main(){
 		fk.input();
 	}
 	freopen("out.txt","w",stdout);
-	fk.print();
-	puts("-------------");
-	for(int i=2;i<=fk.last_part_index;i++)
-		fk.clean(i,5);
-	fk.print();
+	//puts("-------------");
+	for(int i=1;i<=fk.last_part_index;i++)
+		fk.clean(i,30);
+	fk.startdfs(7,1);
 	fk.freespace();
 	return 0;
 }

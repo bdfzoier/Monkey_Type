@@ -138,8 +138,9 @@ inline bool is_vowel(char x){
 struct word_chain{
 	Splay indexof;
 	string stringof[NR],cur,last,read;
-	int last_part_index/*最后一个组的编号*/;
-	int tmp_seq[MXN];
+	int last_part_index/*最后一个组的编号*/,endindex;
+	int save[MXN];
+	bool vis[NR];
 	int** son;
 	int *son_t;
 	//int not_son[NR][NR],not_son_t[NR];
@@ -152,7 +153,11 @@ struct word_chain{
 		for(int i=0;i<NR;i++)
 			memset(son[i],-1,SON*sizeof(int));
 		memset(son_t,0,NR*sizeof(int));
+		memset(vis,0,sizeof(vis));
 		last_part_index=0;
+		newstr("start");
+		newstr("end");
+		endindex=2;
 		printf("Variable initialization completed.\n");
 		//memset(not_son,-1,sizeof(not_son));
 		//memset(not_son_t,0,sizeof(not_son_t));
@@ -200,6 +205,28 @@ struct word_chain{
 	//-----------------------------function using map end--------------------------------------
 	//第一个参数:统计并清除法编号为strnum的节点的子节点
 	//第二个参数:清除出现次数少于k的
+	void startdfs(int mxd,int start_node){
+		memset(vis,0,sizeof(vis));
+		vis[start_node]=1;
+		dfs(mxd,0,start_node);
+	}
+	void dfs(int D,int curd,int cur){
+		if(cur==endindex){
+			for(int i=1;i<curd;i++)
+				cout<<stringof[save[i]];
+			printf("\n");
+			return;
+		}
+		if(curd==D)return;
+		save[curd]=cur;
+		for(int i=1;i<=son_t[cur];i++){
+			if(!vis[son[cur][i]]){
+				vis[son[cur][i]]=1;
+				dfs(D,curd+1,son[cur][i]);
+				vis[son[cur][i]]=0;
+			}
+		}
+	}
 	void input(){
 		last="start";
 		cin>>read;
@@ -224,18 +251,6 @@ struct word_chain{
 			last=cur;
 		}
 		push_next(last,"end");
-	}
-	void dfs(int D,int depth,int tmp_num){
-		if(depth==D || stringof[tmp_num]=="end") {
-			for(int i=2;i<=D;i++)
-				cout<<stringof[tmp_seq[i]]/* tmp_seq[i] << " "*/;
-			printf("\n");
-			return;
-		}
-		tmp_seq[depth+1]=tmp_num;
-		for(int i=1;i<=son_t[tmp_num];i++)
-			dfs(D,depth+1,son[tmp_num][i]);
-		tmp_seq[depth+1]=0;
 	}
 	void clean(int strnum,int k){
 		sort(son[strnum]+1,son[strnum]+son_t[strnum]+1);
