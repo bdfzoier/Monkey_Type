@@ -11,6 +11,7 @@
 
 #define NR 100000
 #define SON 5000
+#define MXN 10000
 
 using namespace std;
 struct Node {
@@ -264,5 +265,6 @@ struct word_chain{
 };
 #undef NR
 #undef SON
+#undef MXN
 
 #endif
