@@ -138,6 +138,7 @@ struct word_chain{
 	Splay indexof;
 	string stringof[NR],cur,last,read;
 	int last_part_index/*最后一个组的编号*/;
+	int tmp_seq[MXN];
 	int** son;
 	int *son_t;
 	//int not_son[NR][NR],not_son_t[NR];
@@ -222,6 +223,18 @@ struct word_chain{
 			last=cur;
 		}
 		push_next(last,"end");
+	}
+	void dfs(int D,int depth,int tmp_num){
+		if(depth==D || stringof[tmp_num]=="end") {
+			for(int i=2;i<=D;i++)
+				cout<<stringof[tmp_seq[i]]/* tmp_seq[i] << " "*/;
+			printf("\n");
+			return;
+		}
+		tmp_seq[depth+1]=tmp_num;
+		for(int i=1;i<=son_t[tmp_num];i++)
+			dfs(D,depth+1,son[tmp_num][i]);
+		tmp_seq[depth+1]=0;
 	}
 	void clean(int strnum,int k){
 		sort(son[strnum]+1,son[strnum]+son_t[strnum]+1);
