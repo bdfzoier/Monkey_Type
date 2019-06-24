@@ -46,7 +46,7 @@ struct prop_arr{
 	}
 	arr_val GetRandom() {
 		int k = (rand() % 3000) * (rand() % 3000) % sum;
-		int idx = lower_bound(lft, lft + t, k) - l;
+		int idx = lower_bound(lft, lft + t, k) - lft;
 		return l[idx];
 	}
 	void print(){
