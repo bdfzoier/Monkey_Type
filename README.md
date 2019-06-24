@@ -6,7 +6,7 @@
 
 ## ✨ Demo
 
-![](//raw.githubusercontent.com/bdfzoier/Monkey_Type/master/img/demo.jpg)
+![](https://raw.githubusercontent.com/bdfzoier/Monkey_Type/master/img/demo.JPG)
 
 ## 🚀 Usage
 
