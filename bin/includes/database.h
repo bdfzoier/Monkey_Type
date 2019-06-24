@@ -8,6 +8,7 @@
 #include<cstdio>
 #include<algorithm>
 #include<map>
+#include<ctime>
 
 #define NR 100000
 #define SON 5000
@@ -146,6 +147,7 @@ struct word_chain{
 	//int not_son[NR][NR],not_son_t[NR];
 	//记录该声韵母组后面可以或者不可以接什么
 	word_chain(){
+		srand(time(NULL));
 		son=new int*[NR];
 		for(int i=0;i<NR;i++)
 			son[i]=new int[SON];
@@ -219,6 +221,32 @@ struct word_chain{
 		}
 		if(curd==D)return;
 		save[curd]=cur;
+		for(int i=1;i<=son_t[cur];i++){
+			if(!vis[son[cur][i]]){
+				vis[son[cur][i]]=1;
+				dfs(D,curd+1,son[cur][i]);
+				vis[son[cur][i]]=0;
+			}
+		}
+	}
+	void startrand(int mxd,int start_node){
+		memset(vis,0,sizeof(vis));
+		vis[start_node]=1;
+		//printf("%d",rand());
+		//rand(mxd,0,start_node);
+	}
+	bool rand(int D,int curd,int cur){
+		if(cur==endindex){
+			for(int i=1;i<curd;i++)
+				cout<<stringof[save[i]];
+			printf("\n");
+			return 1;
+		}
+		if(curd==D)return 0;
+		save[curd]=cur;
+		while(1){
+			
+		}
 		for(int i=1;i<=son_t[cur];i++){
 			if(!vis[son[cur][i]]){
 				vis[son[cur][i]]=1;
