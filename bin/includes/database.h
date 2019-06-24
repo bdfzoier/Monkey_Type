@@ -133,14 +133,60 @@ struct Splay {
 		Destruct(_root);
 	}
 };
+struct arr_val{
+	int value,prop;
+	arr_val(){
+		value=-1;
+		prop=0;
+	}
+};
 inline bool is_vowel(char x){
 	return (x=='a')||(x=='e')||(x=='i')||(x=='o')||(x=='u');
 }
+struct prop_arr{
+	arr_val l[SON];
+	int t,rand_num,prop_tot;
+	prop_arr(){
+		srand(time(NULL));
+		t=0;
+	}
+	void mk(int *x,int len){
+		std::sort(x+1,x+len+1);
+		int cnt=0;
+		for(int i=len;i>=1;i--){
+			if(x[i]==x[i-1] && (i>=1))
+				cnt++;
+			else{
+				l[++t].value=x[i];
+				l[t].prop=cnt+1;
+				cnt=0;
+			}
+		}
+	}
+	void print(){
+		for(int i=1;i<=t;i++)
+			printf("%d,%d ",l[i].value,l[i].prop);
+	}
+	int rand_gen(bool *used){
+		prop_tot=0;
+		for(int i=t;i>=1;i--)
+			prop_tot+=(used[l[i].value]?0:l[i].prop);
+		if(prop_tot==0)return -1;
+		rand_num=rand()%prop_tot;
+		prop_tot=0;
+		for(int i=1;i<=t;i++){
+			if(rand_num<prop_tot+(used[l[i].value]?0:l[i].prop) && rand_num>=prop_tot)return l[i].value;
+			prop_tot+=(used[l[i].value]?0:l[i].prop);
+		}
+		return -1;
+	}
+};
 struct word_chain{
 	Splay indexof;
+	prop_arr *shrink;
 	string stringof[NR],cur,last,read;
 	int last_part_index/*最后一个组的编号*/,endindex;
-	int save[MXN];
+	int save[MXN],nx;
 	bool vis[NR];
 	int** son;
 	int *son_t;
@@ -152,6 +198,7 @@ struct word_chain{
 		for(int i=0;i<NR;i++)
 			son[i]=new int[SON];
 		son_t=new int[NR];
+		shrink=new prop_arr[NR];
 		for(int i=0;i<NR;i++)
 			memset(son[i],-1,SON*sizeof(int));
 		memset(son_t,0,NR*sizeof(int));
@@ -229,14 +276,24 @@ struct word_chain{
 			}
 		}
 	}
-	void startrand(int mxd,int start_node){
-		memset(vis,0,sizeof(vis));
-		vis[start_node]=1;
-		//printf("%d",rand());
-		//rand(mxd,0,start_node);
+	//参数为 最小组数 最大组数 每一个节点尝试多少次子节点就放弃（退火） 起点 生成单词数量
+	//函数只会在遇到end时退出，故有极小几率死循环
+	void startrand(int mnd,int mxd,int loop_t,int start_node,int num){
+		for(int i=1;i<=last_part_index;i++){
+			shrink[i].t=0;
+			shrink[i].mk(son[i],son_t[i]);
+		}
+		printf("start gen word\n");
+		for(int i=0;i<num;i++){
+			//printf("%d%%\n",100*i/num);
+			memset(vis,0,sizeof(vis));
+			vis[start_node]=1;
+			randsearch(mnd,mxd,loop_t,0,start_node);
+		}
 	}
-	bool rand(int D,int curd,int cur){
+	bool randsearch(int d,int D,int loopt,int curd,int cur){
 		if(cur==endindex){
+			if(curd<d)return 0;
 			for(int i=1;i<curd;i++)
 				cout<<stringof[save[i]];
 			printf("\n");
@@ -244,16 +301,14 @@ struct word_chain{
 		}
 		if(curd==D)return 0;
 		save[curd]=cur;
-		while(1){
-			
+		for(int i=0;i<loopt;i++){
+			nx=shrink[cur].rand_gen(vis);
+			if(nx==-1)return 0;
+			vis[nx]=1;
+			if(randsearch(d,D,loopt,curd+1,nx))return 1;
+			vis[nx]=0;
 		}
-		for(int i=1;i<=son_t[cur];i++){
-			if(!vis[son[cur][i]]){
-				vis[son[cur][i]]=1;
-				dfs(D,curd+1,son[cur][i]);
-				vis[son[cur][i]]=0;
-			}
-		}
+		return 0;
 	}
 	void input(){
 		last="start";

@@ -21,6 +21,6 @@ int main(){
 	memset(s,0,sizeof(s));
 	for(int i=1;i<10000;i++)
 		s[my.rand_gen(vis)]++;
-	cout<<s[2]<<" "<<s[3]<<" "<<s[4];
+	cout<<s[1]<<" "<<s[2]<<" "<<s[3];
 	return 0;
 }
