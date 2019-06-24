@@ -25,7 +25,8 @@
 
 比较麻烦，日后写文档。
 
-## 👴~~（一群光头↓）~~Contributors
+## 👴Contributors
+~~（一群光头↓）~~
 
 [![@Edsger-Wybe-Dijkstra](https://avatars1.githubusercontent.com/u/40728083?s=60&v=4)](https://github.com/Edsger-Wybe-Dijkstra)@Edsger-Wybe-Dijkstra
 
