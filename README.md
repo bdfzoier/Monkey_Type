@@ -25,11 +25,10 @@
 
 比较麻烦，日后写文档。
 
-## 👴Contributors
-~~（一群光头↓）~~
+## Contributors
 
 [![@Edsger-Wybe-Dijkstra](https://avatars1.githubusercontent.com/u/40728083?s=60&v=4)](https://github.com/Edsger-Wybe-Dijkstra)@Edsger-Wybe-Dijkstra
 
-[![@ethan-enhe](https://avatars0.githubusercontent.com/u/32587510?s=60&v=4)](https://github.com/ethan-enhe)@ethan-enhe
+光头 [![@ethan-enhe](https://avatars0.githubusercontent.com/u/32587510?s=60&v=4)](https://github.com/ethan-enhe)@ethan-enhe
 
-[![@FilaretKun](https://avatars3.githubusercontent.com/u/43267021?s=60&v=4)](https://github.com/FilaretKun)@FilaretKun
+可耐的 [![@FilaretKun](https://avatars3.githubusercontent.com/u/43267021?s=60&v=4)](https://github.com/FilaretKun)@FilaretKun
