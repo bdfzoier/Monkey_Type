@@ -43,7 +43,7 @@ struct Trie {
 Trie tr;
 string s;
 void input() {
-	ifstream fin("1000-wbase.txt");
+	ifstream fin("[dictionary].txt");
 	string s;
 	while(fin >> s) {
 		tr.Insert(tr._root, s, -1);
@@ -52,16 +52,14 @@ void input() {
 }
 int main() {
 	input();
+	ifstream fin("[generate].txt");
+	int x = 0;
 	while(1) {
-		cout << "Enter the word that you want to check." << endl;
-		cout << "Console >> ";
 		cin >> s;
 		if(tr.Query(tr._root, s, -1)) {
-			cout << "The word you entered is valid." << endl;
-		}
-		else {
-			cout << "The word you entered is invalid. Please try again." << endl;
+			x++;
 		}
 	}
+	printf("%d", x);
 	return 0;
 } 
