@@ -45,7 +45,10 @@ string s;
 void input() {
 	ifstream fin("[dictionary].txt");
 	string s;
-	while(fin >> s) {
+	int n;
+	fin >> n;
+	for (int i = 1;i <= n;i++) {
+		fin >> s;
 		tr.Insert(tr._root, s, -1);
 		// printf("Reading word\n");
 	}
@@ -53,9 +56,11 @@ void input() {
 int main() {
 	input();
 	ifstream fin("[generate].txt");
+	int n;
+	fin >> n;
 	int x = 0;
-	while(1) {
-		cin >> s;
+	for (int i = 1;i <= n;i++) {
+		fin >> s;
 		if(tr.Query(tr._root, s, -1)) {
 			x++;
 		}
