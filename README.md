@@ -4,6 +4,8 @@
 
 一个能自动分析学习字典，利用一阶马尔可夫链生成类似英语单词，满足英语单词基本发音和规则的字符串的程序。
 
+目前达到准确度1/5左右。
+
 ## ✨ Demo
 
 ![](https://raw.githubusercontent.com/bdfzoier/Monkey_Type/master/img/demo.JPG)

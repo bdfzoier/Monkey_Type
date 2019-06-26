@@ -43,7 +43,7 @@ struct Trie {
 Trie tr;
 string s;
 void input() {
-	ifstream fin("[dictionary].txt");
+	ifstream fin("dic.txt");
 	string s;
 	int n;
 	fin >> n;
@@ -55,13 +55,15 @@ void input() {
 }
 int main() {
 	input();
-	ifstream fin("[generate].txt");
+	ifstream fin("out.txt");
+	ofstream fout("test.out");
 	int n;
 	fin >> n;
 	int x = 0;
 	for (int i = 1;i <= n;i++) {
 		fin >> s;
 		if(tr.Query(tr._root, s, -1)) {
+			fout<<s<<endl;
 			x++;
 		}
 	}
