@@ -29,7 +29,7 @@
 
 ## Contributors
 
-[![@Edsger-Wybe-Dijkstra](https://avatars1.githubusercontent.com/u/40728083?s=60&v=4)](https://github.com/Edsger-Wybe-Dijkstra)@Edsger-Wybe-Dijkstra
+什么都不会的菜鸡[![@Edsger-Wybe-Dijkstra](https://avatars1.githubusercontent.com/u/40728083?s=60&v=4)](https://github.com/Edsger-Wybe-Dijkstra)@Edsger-Wybe-Dijkstra
 
 光头 [![@ethan-enhe](https://avatars0.githubusercontent.com/u/32587510?s=60&v=4)](https://github.com/ethan-enhe)@ethan-enhe
 
