@@ -7,10 +7,10 @@ int main(){
 	scanf("%d",&n);
 	while(n--)fk.input();
 	//cout<<"ok";
-	freopen("gen.txt","w",stdout);
-	fk.startrand(1,7,1000,1,1000);
+	//freopen("gen.txt","w",stdout);
+	fk.startrand(4,7,10000,1,100);
 	fk.freespace();
-	//freopen("CON", "r", stdin);
-	//system("pause");
+	freopen("CON", "r", stdin);
+	system("pause");
 	return 0;
 }
